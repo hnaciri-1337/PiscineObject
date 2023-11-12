@@ -6,7 +6,7 @@
 /*   By: hnaciri- <hnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:46:54 by hnaciri-          #+#    #+#             */
-/*   Updated: 2023/11/12 18:01:18 by hnaciri-         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:28:23 by hnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <string>
 # include "Bank.hpp"
 
-struct Account
+class Account
 {
 	private:
 		int		id;

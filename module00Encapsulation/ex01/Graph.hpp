@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bank.hpp                                           :+:      :+:    :+:   */
+/*   Graph.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnaciri- <hnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 21:15:09 by hnaciri-          #+#    #+#             */
-/*   Updated: 2023/11/12 19:28:23 by hnaciri-         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:48:12 by hnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BANK_HPP
-#define BANK_HPP
+#ifndef GRAPH_HPP
+#define GRAPH_HPP
 
 # include <iostream>
 # include <algorithm>
@@ -20,29 +20,25 @@
 # include <set>
 # include <iterator>
 
-class Account;
+class Vector2;
 
-class Bank
+class Graph
 {
 	private:
-		float liquidity;
-		std::map<int, Account *> clients;
-		std::set<int> loanClients;
-		Bank(Bank const &src);
-		Bank &operator= (Bank const &src);
+		int	size;
+		std::vector<Vector2 *> points;
+		Graph();
+		Graph(Graph const &src);
+		Graph &operator= (Graph const &src);
 	public:
-		Bank();
-		Bank(float liquidity);
-		Account	&createAccount(float value = 0);
-		void    transfer(Account *acc, float value);
-		float	withdrawal(Account *acc, float value);
-		float	loan(Account *acc, float value);
-		float	deleteAccount(Account *acc);
-		Account	&operator[](int id);
-		~Bank();
-		friend std::ostream & operator<<(std::ostream &os, Bank &src);
+		Graph(int size);
+		Vector2	&createVector2(float X, float Y);
+		void	deleteVector2(Vector2 *coordinates);
+		void	printGraph();
+		~Graph();
+		friend std::ostream & operator<<(std::ostream &os, Graph &src);
 };
 
-std::ostream & operator<<(std::ostream &os, Bank &src);
+std::ostream & operator<<(std::ostream &os, Graph &src);
 
 #endif
