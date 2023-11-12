@@ -6,7 +6,7 @@
 /*   By: hnaciri- <hnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:46:54 by hnaciri-          #+#    #+#             */
-/*   Updated: 2023/11/11 16:53:29 by hnaciri-         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:01:18 by hnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,32 @@
 # include <vector>
 # include <map>
 # include <iterator>
+# include <string>
 # include "Bank.hpp"
 
-class Account
+struct Account
 {
 	private:
 		int		id;
-		int		value;
+		float	value;
 		Bank	&bankRef;
 		Account();
 		Account(Account const &src);
-		Account &operator= (Account const &src);
-	public:
 		Account(int id, Bank &bank);
-		Account(int id, int value, Bank &bank);
-		void	makeTransfer(int value);
-		int		getValue(void);
+		Account(int id, float value, Bank &bank);
+		Account &operator= (Account const &src);
+		friend Account	&Bank::createAccount(float value);
+    	friend void		Bank::transfer(Account *acc, float value);
+    	friend float	Bank::withdrawal(Account *acc, float value);
+    	friend float	Bank::loan(Account *acc, float value);
+		friend float	Bank::deleteAccount(Account *acc);
+		friend Bank::~Bank();
+	public:
+		void	makeTransfer(float value);
+		float	makeWithdrawal(float value);
+		float	askForLoan(float value);
+		float	deleteMyAccount();
+		float	getValue(void);
 		int		getId(void);
 		~Account();
 };

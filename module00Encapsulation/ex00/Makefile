@@ -1,9 +1,9 @@
-SRCS = main.cpp
-OBJS = main.o
-INCLUDE = easyfind.hpp
+SRCS = *.cpp
+OBJS = *.o
+INCLUDE = *.hpp
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = ex00
+NAME = DivideAndConquer
 
 all: ${NAME}
 
@@ -14,5 +14,6 @@ clean:
 	rm -f ${OBJS}
 fclean: clean
 	rm -f ${NAME}
+run: all clean
+	clear && ./DivideAndConquer
 re : fclean all
-	
