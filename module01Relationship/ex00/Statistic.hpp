@@ -18,6 +18,11 @@ struct Statistic
     private:
         int level;
         int exp;
+    public:
+        void	setLevel (int &);
+		void	setExp (int &);
+		int		getLevel (void) const;
+		int		getExp (void) const;
 };
 
 #endif

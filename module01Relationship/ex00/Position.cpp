@@ -11,3 +11,27 @@
 /* ************************************************************************** */
 
 #include "Position.hpp"
+
+void    Position::setX(int &x) {
+    this->x = x;
+}
+
+void    Position::setY(int &y) {
+    this->y = y;
+}
+
+void    Position::setZ(int &z) {
+    this->z = z;
+}
+
+int Position::getX() const {
+    return x;
+}
+
+int Position::getY() const {
+    return y;
+}
+
+int Position::getZ() const {
+    return z;
+}

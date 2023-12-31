@@ -11,17 +11,26 @@
 /* ************************************************************************** */
 
 #include "Worker.hpp"
+#include "Workshop.hpp"
 
 Worker::Worker() {}
 
+void	Worker::registerToWorkshop (Workshop *w) {
+	if (w != NULL)
+		workshops.insert(w);
+}
+
 void	Worker::takeTool (Tool *s) {
-	s->freeTool();
-	tools.insert(s);
-	s->user = this;
+	if (s != NULL) {
+		s->freeTool();
+		tools.insert(s);
+		s->user = this;
+	}
 }
 
 void	Worker::removeTool (Tool *s) {
-	tools.erase(s);
+	if (s != NULL)
+		tools.erase(s);
 }
 
 Worker::~Worker() {}

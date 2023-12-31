@@ -10,3 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Workshop.hpp"
+
+Workshop::Workshop() {}
+
+void    Workshop::registerWorker(Worker *w) {
+    if (w != NULL) {
+        for (std::set<Tool *>::iterator it = w->tools.begin() it != w->tools.end(); it++) {
+            if (dynamic_cast<T *> (*it)) {
+                Worker.registerToWorkshop(this);
+            }
+        }
+    }
+}
+
+Workshop::~Workshop() {}

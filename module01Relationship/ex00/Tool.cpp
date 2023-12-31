@@ -14,6 +14,7 @@
 #include "Tool.hpp"
 
 void	Tool::freeTool() {
-	user->removeTool(this);
+	if (user != NULL)
+		user->removeTool(this);
 	user = NULL;
 }

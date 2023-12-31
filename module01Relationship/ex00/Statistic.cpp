@@ -11,3 +11,19 @@
 /* ************************************************************************** */
 
 #include "Statistic.hpp"
+
+void    Statistic::setLevel(int &level) {
+    this->level = level;
+}
+
+void    Statistic::setExp(int &exp) {
+    this->exp = exp;
+}
+
+int Statistic::getLevel() const {
+    return level;
+}
+
+int Statistic::getExp() const {
+    return exp;
+}

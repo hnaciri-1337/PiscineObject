@@ -20,7 +20,7 @@ Hammer::Hammer() {
 
 void    Hammer::use() {
     numberOfUses++;
-    std::cout << user << "USING Hammer" << std::endl;
+    std::cout << user << "USING HAMMER" << std::endl;
 }
 
 Hammer::~Hammer() {

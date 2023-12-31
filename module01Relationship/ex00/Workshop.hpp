@@ -12,20 +12,15 @@
 
 #include "Worker.hpp"
 
+template <class T>
 class Workshop
 {
 	private:
 		std::set<Worker *>	workers;
 	public:
-		Workshop(/* args */);
+		Workshop();
+		void	registerWorker(Worker *);
+		void	unregisterWorker(Worker *);
+		void	executeWorkDay();
 		~Workshop();
 };
-
-Workshop::Workshop(/* args */)
-{
-}
-
-Workshop::~Workshop()
-{
-}
-

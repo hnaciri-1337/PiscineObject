@@ -18,17 +18,23 @@
 #include "Shovel.hpp"
 #include <set>
 
+class Workshop;
+
 class Worker
 {
 	private:
-		Position			coordonnee;
-		Statistic   		stat;
-		std::set<Tool *>	tools;
+		Position				coordonnee;
+		Statistic   			stat;
+		std::set<Tool *>		tools;
+		std::set<Workshop *>	workshops;
+		void	work ();
+		void	registerToWorkshop (Workshop *);
 		friend	class Tool;
+		friend	class Workshop;
 	public:
 		Worker();
-		void	takeTool (Tool *s);
-		void	removeTool (Tool *s);
+		void	takeTool (Tool *);
+		void	removeTool (Tool *);
 		~Worker();
 };
 

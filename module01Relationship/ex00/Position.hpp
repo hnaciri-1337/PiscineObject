@@ -19,6 +19,13 @@ struct Position
 		int	x;
 		int	y;
 		int	z;
+	public:
+		void	setX (int &);
+		void	setY (int &);
+		void	setZ (int &);
+		int		getX (void) const;
+		int		getY (void) const;
+		int		getZ (void) const;
 };
 
 #endif
