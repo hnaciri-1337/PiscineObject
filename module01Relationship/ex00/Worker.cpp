@@ -15,9 +15,14 @@
 
 Worker::Worker() {}
 
-void	Worker::registerToWorkshop (Workshop *w) {
+void	Worker::registerToWorkshop (Workshop<Tool> *w) {
 	if (w != NULL)
 		workshops.insert(w);
+}
+
+void	Worker::unregisterFromWorkshop (Workshop<Tool> *w) {
+	if (w != NULL)
+		workshops.erase(w);
 }
 
 void	Worker::takeTool (Tool *s) {
@@ -29,8 +34,11 @@ void	Worker::takeTool (Tool *s) {
 }
 
 void	Worker::removeTool (Tool *s) {
-	if (s != NULL)
+	std::set<Tool *>::iterator it = tools.find(s);
+	if (s != NULL && it != tools.end()) {
 		tools.erase(s);
+		(*it)->freeTool();
+	}
 }
 
 Worker::~Worker() {}

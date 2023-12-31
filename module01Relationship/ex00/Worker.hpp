@@ -16,9 +16,9 @@
 #include "Position.hpp"
 #include "Statistic.hpp"
 #include "Shovel.hpp"
+#include "Workshop.hpp"
 #include <set>
 
-class Workshop;
 
 class Worker
 {
@@ -26,9 +26,10 @@ class Worker
 		Position				coordonnee;
 		Statistic   			stat;
 		std::set<Tool *>		tools;
-		std::set<Workshop *>	workshops;
+		std::set<Workshop<Tool> *>	workshops;
 		void	work ();
-		void	registerToWorkshop (Workshop *);
+		void	registerToWorkshop (Workshop<Tool> *);
+		void	unregisterFromWorkshop (Workshop<Tool> *);
 		friend	class Tool;
 		friend	class Workshop;
 	public:

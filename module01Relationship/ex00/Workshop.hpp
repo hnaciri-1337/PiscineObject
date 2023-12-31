@@ -10,13 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Worker.hpp"
+# ifndef WORKSHOP_HPP
+#define WORKSHOP_HPP
+
+class Worker;
 
 template <class T>
 class Workshop
 {
 	private:
-		std::set<Worker *>	workers;
+		std::map<Worker *, T *>	workers;
 	public:
 		Workshop();
 		void	registerWorker(Worker *);
@@ -24,3 +27,5 @@ class Workshop
 		void	executeWorkDay();
 		~Workshop();
 };
+
+# endif

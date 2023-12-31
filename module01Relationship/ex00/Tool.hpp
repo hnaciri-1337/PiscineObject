@@ -20,9 +20,9 @@ class Tool
     protected:
         int numberOfUses;
 		Worker  *user;
+		void	freeTool();
         friend class    Worker;
     public:
-		void	freeTool();
         virtual void    use() = 0;
 };
 
