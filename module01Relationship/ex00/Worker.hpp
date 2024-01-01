@@ -16,26 +16,36 @@
 #include "Position.hpp"
 #include "Statistic.hpp"
 #include "Shovel.hpp"
-#include "Workshop.hpp"
-#include <set>
+#include "Hammer.hpp"
+#include <unordered_set>
 
+template <class T>
+class	Workshop;
 
 class Worker
 {
 	private:
-		Position				coordonnee;
-		Statistic   			stat;
-		std::set<Tool *>		tools;
-		std::set<Workshop<Tool> *>	workshops;
-		void	work ();
+		std::string								name;
+		Position								coordonnee;
+		Statistic   							stat;
+		std::unordered_set<Tool *>				tools;
+		std::unordered_set<Workshop<Tool> *>	workshops;
+		void	work (Tool *) const;
 		void	registerToWorkshop (Workshop<Tool> *);
 		void	unregisterFromWorkshop (Workshop<Tool> *);
 		friend	class Tool;
-		friend	class Workshop;
+		friend	class Workshop<Tool>;
 	public:
 		Worker();
-		void	takeTool (Tool *);
-		void	removeTool (Tool *);
+		Worker(std::string, int, int, int, int, int);
+		int			getLevel() const;
+		std::string	getName() const;
+		std::string	getPosition() const;
+		void		takeTool (Tool *);
+		void		removeTool (Tool *);
+		void		printInfo();
+		template <typename T>
+		T*			getTool() const;
 		~Worker();
 };
 

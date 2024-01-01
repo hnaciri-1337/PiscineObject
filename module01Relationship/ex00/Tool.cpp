@@ -18,3 +18,12 @@ void	Tool::freeTool() {
 		user->removeTool(this);
 	user = NULL;
 }
+
+void	Tool::printUseMessage(std::string toolName) const {
+    std::cout << user->getLevel() << " :" << user->getName() << std::endl;
+	std::cout << "Using " << toolName << " in " << user->getPosition() << std::endl;
+}
+
+std::string	Tool::getOwnerName() const {
+	return user->getName();
+}

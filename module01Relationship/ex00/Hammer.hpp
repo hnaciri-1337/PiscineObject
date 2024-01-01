@@ -13,15 +13,15 @@
 #ifndef HAMMER_HPP
 #define HAMMER_HPP
 
-class	Worker;
 #include <iostream>
 #include "Tool.hpp"
 
 class Hammer: public Tool
-{
+{	
+	private:
+		void    use();
 	public:
 		Hammer();
-		void    use();
 		~Hammer();
 };
 

@@ -23,9 +23,9 @@ struct Position
 		void	setX (int &);
 		void	setY (int &);
 		void	setZ (int &);
-		int		getX (void) const;
-		int		getY (void) const;
-		int		getZ (void) const;
+		int		getX () const;
+		int		getY () const;
+		int		getZ () const;
 };
 
 #endif

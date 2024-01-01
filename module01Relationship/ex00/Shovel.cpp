@@ -20,7 +20,7 @@ Shovel::Shovel() {
 
 void    Shovel::use() {
     numberOfUses++;
-    std::cout << user << "USING SHOVEL" << std::endl;
+    printUseMessage("SHOVEL");
 }
 
 Shovel::~Shovel() {

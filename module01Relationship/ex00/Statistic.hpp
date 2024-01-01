@@ -21,8 +21,8 @@ struct Statistic
     public:
         void	setLevel (int &);
 		void	setExp (int &);
-		int		getLevel (void) const;
-		int		getExp (void) const;
+		int		getLevel () const;
+		int		getExp () const;
 };
 
 #endif

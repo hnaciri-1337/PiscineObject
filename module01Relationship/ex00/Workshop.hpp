@@ -10,22 +10,53 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef WORKSHOP_HPP
+#ifndef WORKSHOP_HPP
 #define WORKSHOP_HPP
 
-class Worker;
+#include <unordered_map>
+#include "Worker.hpp"
 
 template <class T>
 class Workshop
 {
 	private:
-		std::map<Worker *, T *>	workers;
+		std::unordered_map<Worker *, T *>	workers;
 	public:
-		Workshop();
-		void	registerWorker(Worker *);
-		void	unregisterWorker(Worker *);
-		void	executeWorkDay();
-		~Workshop();
+		Workshop() {}
+		void	registerWorker(Worker *w) {
+			if (w != NULL) {
+				T   *ptr = w->getTool<T> ();
+				if (ptr != nullptr) {
+					w->registerToWorkshop(this);
+					workers.insert(std::make_pair(w, ptr));
+				}
+			}
+		}
+		void	unregisterWorker(Worker *w) {
+			if (w != NULL) {
+				typename std::unordered_map<Worker *, T *>::iterator  it = workers.find(w);
+				if (it != workers.end()) {
+					w->unregisterFromWorkshop(this);
+					workers.erase(it);
+				}
+			}
+		}
+		void	cleanWorkshop(Worker *w) {
+			if (w != NULL) {
+				T   *ptr = w->getTool<T> ();
+				if (ptr == nullptr) {
+					unregisterWorker(w);
+				} else {
+					workers[w] = ptr;
+				}
+			}
+		}
+		void	executeWorkDay() const {
+			for (typename std::unordered_map<Worker *, T *>::iterator it = workers.begin(); it != workers.end(); it++) {
+				it->first->work(it->second);
+			}
+		}
+		~Workshop() {}
 };
 
-# endif
+#endif

@@ -17,13 +17,15 @@ class   Worker;
 
 class Tool
 {
-    protected:
-        int numberOfUses;
-		Worker  *user;
-		void	freeTool();
-        friend class    Worker;
-    public:
-        virtual void    use() = 0;
+	protected:
+		int         numberOfUses;
+		Worker      *user;
+		void        freeTool();
+		void		printUseMessage(std::string) const;
+		std::string	getOwnerName() const;
+		friend class    Worker;
+	public:
+		virtual void    use() = 0;
 };
 
 #endif
