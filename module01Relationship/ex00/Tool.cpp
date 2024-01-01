@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Worker.hpp"
 #include "Tool.hpp"
+#include "Worker.hpp"
 
 void	Tool::freeTool() {
 	if (user != NULL)
@@ -35,3 +35,5 @@ void	Tool::printUseMessage(std::string toolName) const {
 std::string	Tool::getOwnerName() const {
 	return user->getName();
 }
+
+Tool::~Tool() {}

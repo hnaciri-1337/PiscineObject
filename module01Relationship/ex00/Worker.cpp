@@ -42,16 +42,6 @@ void	Worker::work(Tool *tool) {
 		(*it)->use();
 }
 
-void	Worker::registerToWorkshop (Workshop<Tool> *w) {
-	if (w != NULL)
-		workshops.insert(w);
-}
-
-void	Worker::unregisterFromWorkshop (Workshop<Tool> *w) {
-	if (w != NULL)
-		workshops.erase(w);
-}
-
 void	Worker::takeTool (Tool *tool) {
 	if (tool != NULL) {
 		tool->freeTool();
@@ -66,8 +56,8 @@ void	Worker::removeTool (Tool *tool) {
 		if (it != tools.end()) {
 			tools.erase(tool);
 			(*it)->freeTool();
-			for (std::unordered_set<Workshop<Tool> *>::iterator it = workshops.begin(); it != workshops.end(); it++)
-				(*it)->cleanWorkshop(this);
+			for (std::unordered_set<Workshop<Tool> *>::iterator _it = workshops.begin(); _it != workshops.end(); _it++)
+				(*_it)->cleanWorkshop(this);
 		}
 	}
 }
@@ -88,15 +78,6 @@ void	Worker::printInfo() {
 	std::cout << hammerCount << " Hammer" << std::endl;
 	std::cout << shovelCount << " Shovel" << std::endl;
 	std::cout << "\n---------------\n";
-}
-
-template <typename T>
-T*		Worker::getTool() const {
-	for (std::unordered_set<Tool *>::const_iterator it = tools.begin(); it != tools.end(); it++) {
-		if (dynamic_cast<T *> (*it))
-			return *it;
-	}
-	return nullptr;
 }
 
 Worker::~Worker() {}

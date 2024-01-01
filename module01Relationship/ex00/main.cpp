@@ -57,6 +57,9 @@ int     main()
 
 		wA.printInfo();
 		wB.printInfo();
+
+		delete tA;
+		delete tB;
 	}
 
 	{
@@ -69,27 +72,27 @@ int     main()
 		Tool	*hB = new Hammer();
 
 		Workshop<Shovel>	shovelWorkshop;
-		Workshop<Hammer>	hammerWorkshop;
+		// Workshop<Hammer>	hammerWorkshop;
 
 		wA.takeTool(sA);
 		wA.takeTool(hA);
 		wB.takeTool(sB);
 		wB.takeTool(hB);
 
-		hammerWorkshop.registerWorker(&wA);
 		shovelWorkshop.registerWorker(&wA);
+		// hammerWorkshop.registerWorker(&wA);
 		shovelWorkshop.registerWorker(&wA);
-		hammerWorkshop.registerWorker(&wB);
+		// hammerWorkshop.registerWorker(&wB);
 		
 		shovelWorkshop.executeWorkDay();
-		hammerWorkshop.executeWorkDay();
+		// hammerWorkshop.executeWorkDay();
 
 		wA.takeTool(sB);
 		shovelWorkshop.executeWorkDay();
-		hammerWorkshop.executeWorkDay();
+		// hammerWorkshop.executeWorkDay();
 		
 		wB.takeTool(sB);
 		shovelWorkshop.executeWorkDay();
-		hammerWorkshop.executeWorkDay();
+		// hammerWorkshop.executeWorkDay();
 	}
 }

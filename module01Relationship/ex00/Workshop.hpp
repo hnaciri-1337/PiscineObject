@@ -25,7 +25,7 @@ class Workshop
 		Workshop() {}
 		void	registerWorker(Worker *w) {
 			if (w != NULL) {
-				T   *ptr = w->getTool<T> ();
+				T	*ptr = w->getTool<T> ();
 				if (ptr != nullptr) {
 					w->registerToWorkshop(this);
 					workers.insert(std::make_pair(w, ptr));
@@ -43,7 +43,7 @@ class Workshop
 		}
 		void	cleanWorkshop(Worker *w) {
 			if (w != NULL) {
-				T   *ptr = w->getTool<T> ();
+				T	*ptr = w->getTool<T> ();
 				if (ptr == nullptr) {
 					unregisterWorker(w);
 				} else {
@@ -51,7 +51,7 @@ class Workshop
 				}
 			}
 		}
-		void	executeWorkDay() const {
+		void	executeWorkDay() {
 			for (typename std::unordered_map<Worker *, T *>::iterator it = workers.begin(); it != workers.end(); it++) {
 				it->first->work(it->second);
 			}

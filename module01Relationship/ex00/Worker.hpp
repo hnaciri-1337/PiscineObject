@@ -31,10 +31,19 @@ class Worker
 		std::unordered_set<Tool *>				tools;
 		std::unordered_set<Workshop<Tool> *>	workshops;
 		void	work (Tool *);
-		void	registerToWorkshop (Workshop<Tool> *);
-		void	unregisterFromWorkshop (Workshop<Tool> *);
+		template <class T>
+		void	registerToWorkshop (Workshop<T> *w) {
+			if (w != NULL)
+				workshops.insert(w);
+		}
+		template <class T>
+		void	unregisterFromWorkshop (Workshop<T> *w) {
+			if (w != NULL)
+				workshops.erase(w);
+		}
 		friend	class Tool;
-		friend	class Workshop<Tool>;
+		template <class T>
+		friend	class Workshop;
 	public:
 		Worker();
 		Worker(std::string, int, int, int, int, int);
@@ -44,8 +53,14 @@ class Worker
 		void		takeTool (Tool *);
 		void		removeTool (Tool *);
 		void		printInfo();
-		template <typename T>
-		T*			getTool() const;
+		template <class T>
+		T			*getTool() {
+			for (std::unordered_set<Tool *>::iterator it = tools.begin(); it != tools.end(); it++) {
+				if (dynamic_cast<T *> (*it))
+					return *it;
+			}
+			return nullptr;
+		}
 		~Worker();
 };
 

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "Shovel.hpp"
-#include "Worker.hpp"
 
 Shovel::Shovel() {
     numberOfUses = 0;

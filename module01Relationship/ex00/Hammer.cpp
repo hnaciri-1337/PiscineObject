@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "Hammer.hpp"
-#include "Worker.hpp"
 
 Hammer::Hammer() {
     numberOfUses = 0;

@@ -12,7 +12,7 @@
 
 #ifndef TOOL_HPP
 #define TOOL_HPP
-
+#include <string>
 class   Worker;
 
 class Tool
@@ -26,6 +26,7 @@ class Tool
 		friend class    Worker;
 	public:
 		virtual void    use() = 0;
+		virtual ~Tool();
 };
 
 #endif
