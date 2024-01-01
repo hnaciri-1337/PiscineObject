@@ -6,7 +6,7 @@
 /*   By: hnaciri- <hnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:29:39 by hnaciri-          #+#    #+#             */
-/*   Updated: 2023/11/19 16:17:14 by hnaciri-         ###   ########.fr       */
+/*   Updated: 2024/01/01 21:14:05 by hnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ std::string	identify(Tool * p)
         return "Shovel";
     else if ((dynamic_cast<Hammer*>(p)))
         return "Hammer";
-	return "Unknown";
+	else
+		return "Unknown";
 }
 
 int     main()
@@ -64,11 +65,31 @@ int     main()
 
 		Tool	*sA = new Shovel();
 		Tool	*sB = new Shovel();
-		Tool	*sC = new Shovel();
 		Tool	*hA = new Hammer();
 		Tool	*hB = new Hammer();
-		Tool	*hC = new Hammer();
 
-		wA.
+		Workshop<Shovel>	shovelWorkshop;
+		Workshop<Hammer>	hammerWorkshop;
+
+		wA.takeTool(sA);
+		wA.takeTool(hA);
+		wB.takeTool(sB);
+		wB.takeTool(hB);
+
+		hammerWorkshop.registerWorker(&wA);
+		shovelWorkshop.registerWorker(&wA);
+		shovelWorkshop.registerWorker(&wA);
+		hammerWorkshop.registerWorker(&wB);
+		
+		shovelWorkshop.executeWorkDay();
+		hammerWorkshop.executeWorkDay();
+
+		wA.takeTool(sB);
+		shovelWorkshop.executeWorkDay();
+		hammerWorkshop.executeWorkDay();
+		
+		wB.takeTool(sB);
+		shovelWorkshop.executeWorkDay();
+		hammerWorkshop.executeWorkDay();
 	}
 }

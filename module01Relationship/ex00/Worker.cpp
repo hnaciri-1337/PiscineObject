@@ -6,7 +6,7 @@
 /*   By: hnaciri- <hnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 16:21:30 by hnaciri-          #+#    #+#             */
-/*   Updated: 2023/11/19 16:57:09 by hnaciri-         ###   ########.fr       */
+/*   Updated: 2024/01/01 21:10:18 by hnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ std::string Worker::getPosition() const {
 	return ("[" + std::to_string(coordonnee.getX()) + ", " + std::to_string(coordonnee.getY()) + ", " + std::to_string(coordonnee.getZ()) + "]");
 }
 
-void	Worker::work(Tool *tool) const {
+void	Worker::work(Tool *tool) {
 	std::unordered_set<Tool *>::iterator it = tools.find(tool);
 	if (it != tools.end())
 		(*it)->use();
@@ -92,7 +92,7 @@ void	Worker::printInfo() {
 
 template <typename T>
 T*		Worker::getTool() const {
-	for (std::unordered_set<Tool *>::iterator it = tools.begin(); it != tools.end(); it++) {
+	for (std::unordered_set<Tool *>::const_iterator it = tools.begin(); it != tools.end(); it++) {
 		if (dynamic_cast<T *> (*it))
 			return *it;
 	}

@@ -6,7 +6,7 @@
 /*   By: hnaciri- <hnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:37:53 by hnaciri-          #+#    #+#             */
-/*   Updated: 2023/11/19 16:54:47 by hnaciri-         ###   ########.fr       */
+/*   Updated: 2024/01/01 21:09:39 by hnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class Worker
 		Statistic   							stat;
 		std::unordered_set<Tool *>				tools;
 		std::unordered_set<Workshop<Tool> *>	workshops;
-		void	work (Tool *) const;
+		void	work (Tool *);
 		void	registerToWorkshop (Workshop<Tool> *);
 		void	unregisterFromWorkshop (Workshop<Tool> *);
 		friend	class Tool;
