@@ -27,6 +27,8 @@ void	Tool::printUseMessage(std::string toolName) const {
 		std::cout << "st";
 	else if (numberOfUses % 10 == 2)
 		std::cout << "nd";
+	else if (numberOfUses % 10 == 3)
+		std::cout << "rd";
 	else
 		std::cout << "th";
 	std::cout << " time" << std::endl;

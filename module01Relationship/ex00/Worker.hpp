@@ -22,6 +22,8 @@
 template <class T>
 class	Workshop;
 
+class	BaseWorkshop;
+
 class Worker
 {
 	private:
@@ -29,7 +31,7 @@ class Worker
 		Position								coordonnee;
 		Statistic   							stat;
 		std::unordered_set<Tool *>				tools;
-		std::unordered_set<Workshop<Tool> *>	workshops;
+		std::unordered_set<BaseWorkshop *>	workshops;
 		void	work (Tool *);
 		template <class T>
 		void	registerToWorkshop (Workshop<T> *w) {
@@ -56,8 +58,9 @@ class Worker
 		template <class T>
 		T			*getTool() {
 			for (std::unordered_set<Tool *>::iterator it = tools.begin(); it != tools.end(); it++) {
-				if (dynamic_cast<T *> (*it))
-					return *it;
+				T	*ret = dynamic_cast<T *> (*it);
+				if (ret)
+					return ret;
 			}
 			return nullptr;
 		}

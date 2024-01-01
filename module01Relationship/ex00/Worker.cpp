@@ -56,7 +56,7 @@ void	Worker::removeTool (Tool *tool) {
 		if (it != tools.end()) {
 			tools.erase(tool);
 			(*it)->freeTool();
-			for (std::unordered_set<Workshop<Tool> *>::iterator _it = workshops.begin(); _it != workshops.end(); _it++)
+			for (std::unordered_set<BaseWorkshop *>::iterator _it = workshops.begin(); _it != workshops.end(); _it++)
 				(*_it)->cleanWorkshop(this);
 		}
 	}

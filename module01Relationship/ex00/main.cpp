@@ -62,6 +62,8 @@ int     main()
 		delete tB;
 	}
 
+	std::cout << "------------------------------------------------------------" << std::endl;
+
 	{
 		Worker	wA("WorkerA", 5, 1300, 3, 4, 5);
 		Worker 	wB("WorkerB", 3, 830, 1, 2, 3);
@@ -72,7 +74,7 @@ int     main()
 		Tool	*hB = new Hammer();
 
 		Workshop<Shovel>	shovelWorkshop;
-		// Workshop<Hammer>	hammerWorkshop;
+		Workshop<Hammer>	hammerWorkshop;
 
 		wA.takeTool(sA);
 		wA.takeTool(hA);
@@ -80,19 +82,29 @@ int     main()
 		wB.takeTool(hB);
 
 		shovelWorkshop.registerWorker(&wA);
-		// hammerWorkshop.registerWorker(&wA);
-		shovelWorkshop.registerWorker(&wA);
-		// hammerWorkshop.registerWorker(&wB);
+		hammerWorkshop.registerWorker(&wA);
+		shovelWorkshop.registerWorker(&wB);
+		hammerWorkshop.registerWorker(&wB);
+
 		
+		std::cout << "--------------------------" << std::endl;
+
+		wA.printInfo();
+		wB.printInfo();
+
 		shovelWorkshop.executeWorkDay();
-		// hammerWorkshop.executeWorkDay();
+		hammerWorkshop.executeWorkDay();
+
+		std::cout << "--------------------------" << std::endl;
 
 		wA.takeTool(sB);
+
+		wA.printInfo();
+		wB.printInfo();
+	
 		shovelWorkshop.executeWorkDay();
-		// hammerWorkshop.executeWorkDay();
+		hammerWorkshop.executeWorkDay();
 		
-		wB.takeTool(sB);
-		shovelWorkshop.executeWorkDay();
-		// hammerWorkshop.executeWorkDay();
+		std::cout << "--------------------------" << std::endl;
 	}
 }

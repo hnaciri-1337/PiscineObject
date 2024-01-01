@@ -16,8 +16,16 @@
 #include <unordered_map>
 #include "Worker.hpp"
 
+class BaseWorkshop {
+	public:
+		virtual void	registerWorker(Worker *w) = 0;
+		virtual void	unregisterWorker(Worker *w) = 0;
+		virtual void	cleanWorkshop(Worker *w) = 0;
+		virtual ~BaseWorkshop() {}
+};
+
 template <class T>
-class Workshop
+class Workshop : public BaseWorkshop
 {
 	private:
 		std::unordered_map<Worker *, T *>	workers;
