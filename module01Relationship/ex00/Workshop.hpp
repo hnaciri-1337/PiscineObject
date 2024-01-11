@@ -13,54 +13,58 @@
 #ifndef WORKSHOP_HPP
 #define WORKSHOP_HPP
 
-#include <unordered_map>
+#include <map>
 #include "Worker.hpp"
 
 class BaseWorkshop {
 	public:
-		virtual void	registerWorker(Worker *w) = 0;
-		virtual void	unregisterWorker(Worker *w) = 0;
-		virtual void	cleanWorkshop(Worker *w) = 0;
-		virtual ~BaseWorkshop() {}
+		virtual bool	registerWorker(Worker *w) = 0;
+		virtual bool	unregisterWorker(Worker *w) = 0;
+		virtual bool	cleanWorkshop(Worker *w) = 0;
+		virtual 		~BaseWorkshop();
 };
 
 template <class T>
 class Workshop : public BaseWorkshop
 {
 	private:
-		std::unordered_map<Worker *, T *>	workers;
+		std::map<Worker *, T *>	workers;
 	public:
 		Workshop() {}
-		void	registerWorker(Worker *w) {
+		bool	registerWorker(Worker *w) {
 			if (w != NULL) {
 				T	*ptr = w->getTool<T> ();
 				if (ptr != nullptr) {
 					w->registerToWorkshop(this);
 					workers.insert(std::make_pair(w, ptr));
+					return true;
 				}
 			}
+			return false;
 		}
-		void	unregisterWorker(Worker *w) {
+		bool	unregisterWorker(Worker *w) {
 			if (w != NULL) {
-				typename std::unordered_map<Worker *, T *>::iterator  it = workers.find(w);
+				typename std::map<Worker *, T *>::iterator  it = workers.find(w);
 				if (it != workers.end()) {
 					w->unregisterFromWorkshop(this);
 					workers.erase(it);
+					return true;
 				}
 			}
+			return false;
 		}
-		void	cleanWorkshop(Worker *w) {
+		bool	cleanWorkshop(Worker *w) {
 			if (w != NULL) {
 				T	*ptr = w->getTool<T> ();
 				if (ptr == nullptr) {
-					unregisterWorker(w);
-				} else {
-					workers[w] = ptr;
+					return unregisterWorker(w);
 				}
+				workers[w] = ptr;
 			}
+			return false;
 		}
 		void	executeWorkDay() {
-			for (typename std::unordered_map<Worker *, T *>::iterator it = workers.begin(); it != workers.end(); it++) {
+			for (typename std::map<Worker *, T *>::iterator it = workers.begin(); it != workers.end(); it++) {
 				it->first->work(it->second);
 			}
 		}

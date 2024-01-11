@@ -17,7 +17,7 @@
 #include "Statistic.hpp"
 #include "Shovel.hpp"
 #include "Hammer.hpp"
-#include <unordered_set>
+#include <set>
 
 template <class T>
 class	Workshop;
@@ -30,8 +30,8 @@ class Worker
 		std::string								name;
 		Position								coordonnee;
 		Statistic   							stat;
-		std::unordered_set<Tool *>				tools;
-		std::unordered_set<BaseWorkshop *>	workshops;
+		std::set<Tool *>				tools;
+		std::set<BaseWorkshop *>	workshops;
 		void	work (Tool *);
 		template <class T>
 		void	registerToWorkshop (Workshop<T> *w) {
@@ -57,7 +57,7 @@ class Worker
 		void		printInfo();
 		template <class T>
 		T			*getTool() {
-			for (std::unordered_set<Tool *>::iterator it = tools.begin(); it != tools.end(); it++) {
+			for (std::set<Tool *>::iterator it = tools.begin(); it != tools.end(); it++) {
 				T	*ret = dynamic_cast<T *> (*it);
 				if (ret)
 					return ret;

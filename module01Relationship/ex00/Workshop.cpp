@@ -13,3 +13,5 @@
 #include "Workshop.hpp"
 #include "Worker.hpp"
 
+BaseWorkshop::~BaseWorkshop() {}
+

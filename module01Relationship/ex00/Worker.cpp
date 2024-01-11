@@ -37,7 +37,7 @@ std::string Worker::getPosition() const {
 }
 
 void	Worker::work(Tool *tool) {
-	std::unordered_set<Tool *>::iterator it = tools.find(tool);
+	std::set<Tool *>::iterator it = tools.find(tool);
 	if (it != tools.end())
 		(*it)->use();
 }
@@ -52,12 +52,15 @@ void	Worker::takeTool (Tool *tool) {
 
 void	Worker::removeTool (Tool *tool) {
 	if (tool != NULL) {
-		std::unordered_set<Tool *>::iterator it = tools.find(tool);
+		std::set<Tool *>::iterator it = tools.find(tool);
 		if (it != tools.end()) {
-			tools.erase(tool);
-			(*it)->freeTool();
-			for (std::unordered_set<BaseWorkshop *>::iterator _it = workshops.begin(); _it != workshops.end(); _it++)
-				(*_it)->cleanWorkshop(this);
+			tool->user = NULL;
+			tools.erase(it);
+			for (std::set<BaseWorkshop *>::iterator _it = workshops.begin(); _it != workshops.end();)
+				if (((*_it)->cleanWorkshop(this)))
+					_it = workshops.begin();
+				else
+					_it++;
 		}
 	}
 }
@@ -65,7 +68,7 @@ void	Worker::removeTool (Tool *tool) {
 void	Worker::printInfo() {
 	int	hammerCount = 0;
 	int	shovelCount = 0;
-	for (std::unordered_set<Tool *>::iterator it = tools.begin(); it != tools.end(); it++) {
+	for (std::set<Tool *>::iterator it = tools.begin(); it != tools.end(); it++) {
 		if (dynamic_cast<Hammer *> (*it))
 			hammerCount++;
 		else if (dynamic_cast<Shovel *> (*it))
