@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Engine.hpp                                         :+:      :+:    :+:   */
+/*   Steering.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnaciri- <hnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 12:35:33 by hnaciri-          #+#    #+#             */
-/*   Updated: 2024/01/14 16:12:52 by hnaciri-         ###   ########.fr       */
+/*   Created: 2024/01/14 15:54:20 by hnaciri-          #+#    #+#             */
+/*   Updated: 2024/01/14 16:31:26 by hnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENGINE_HPP
-#define ENGINE_HPP
+#ifndef STEERING_HPP
+#define STEERING_HPP
 
 #include <iostream>
 
-class Engine
+class Steering
 {
 	private:
-		bool	_is_on;
+		double  _angle;
 	public:
-		Engine() {
-			_is_on = false;
+		Steering() {
+			_angle = 0;
 		}
-		void	start() {
-			_is_on = true;
-			std::cout << "Engine on" << std::endl;
+		void	turn_wheel(double angle) {
+			_angle += angle;
+			_angle = std::min(_angle, 90.00);
+			_angle = std::max(_angle, -90.00);
+
+			std::cout << "Wheel degree: " << _angle << std::endl;
 		}
-		void	stop() {
-			_is_on = false;
-			std::cout << "Engine off" << std::endl;
+		void	straighten_wheels() {
+			_angle = 0;
+			std::cout << "Wheel degree: " << _angle << std::endl;
 		}
-		~Engine() {}
+		~Steering() {
+		}
 };
 
 #endif
