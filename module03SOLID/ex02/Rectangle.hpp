@@ -6,7 +6,7 @@
 /*   By: hnaciri- <hnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:16:57 by hnaciri-          #+#    #+#             */
-/*   Updated: 2024/01/17 16:57:29 by hnaciri-         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:58:32 by hnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Rectangle: public Shape
 		double	getPerimeter() {
 			return (height * 2) + (width * 2);
 		}
-		virtual ~Rectangle() {}
+		~Rectangle() {}
 };
 
 #endif
