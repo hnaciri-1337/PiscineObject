@@ -6,7 +6,7 @@
 /*   By: hnaciri- <hnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:15:06 by hnaciri-          #+#    #+#             */
-/*   Updated: 2024/01/17 17:07:08 by hnaciri-         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:02:02 by hnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,4 @@ class Shape
 		virtual ~Shape() {}
 };
 
-#endif SHAPE_HPP
+#endif
